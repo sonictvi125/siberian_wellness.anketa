@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета Siberian Wellness</title>
+    <style>
+        :root {
+            --primary-color: #00a4e4;
+            --dark-color: #2c3e50;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: #fff;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .header h2 {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        h3 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 6px;
+            color: var(--dark-color);
+            margin-top: 25px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="number"] {
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: #008bc2;
+        }
+
+        .btn:active {
+            transform: scale(0.99);
+        }
+
+        .btn-email {
+            background-color: var(--dark-color);
+        }
+
+        .btn-email:hover {
+            background-color: #1a252f;
+        }
+
+        .status-msg {
+            display: none;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            body {
+                padding: 10px;
+            }
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <img src="https://ru.siberianhealth.com/shopen/public/build/online_store/img/logo/logo_30_ru.svg" alt="Siberian Wellness Логотип">
+        <h2>Анкета клиента</h2>
+    </div>
+
+    <form id="wellnessForm">
+        <h3>Личные данные</h3>
+        <div class="form-group">
+            <label for="lastName">Фамилия</label>
+            <input type="text" id="lastName" required placeholder="Иванов">
+        </div>
+        <div class="form-group">
+            <label for="firstName">Имя</label>
+            <input type="text" id="firstName" required placeholder="Иван">
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Дата Рождения</label>
+            <input type="date" id="birthDate" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Контактный телефон</label>
+            <input type="tel" id="phone" required placeholder="+7 (999) 000-00-00">
+        </div>
+        <div class="form-group">
+            <label for="email">Электронная почта</label>
+            <input type="email" id="email" required placeholder="example@mail.ru">
+        </div>
+
+        <h3>Результаты SMART-Диагностики</h3>
+        <div class="row">
+            <div class="form-group">
+                <label for="weight">Ваш Вес (кг)</label>
+                <input type="number" id="weight" placeholder="70">
+            </div>
+            <div class="form-group">
+                <label for="height">Рост (см)</label>
+                <input type="number" id="height" placeholder="175">
+            </div>
+        </div>
+
+        <h3>Результаты опросников</h3>
+        <div class="form-group">
+            <label for="energyScore">Опросник: «Насколько Вы энергичны» (баллы)</label>
+            <input type="number" id="energyScore" placeholder="Количество баллов">
+        </div>
+        <div class="form-group">
+            <label for="thyroidScore">Опросник: «Состояние вашей щитовидной железы» (баллы)</label>
+            <input type="number" id="thyroidScore" placeholder="Количество баллов">
+        </div>
+        <div class="form-group">
+            <label for="diabetesScore">Опросник: «Риск развития сахарного диабета» (баллы)</label>
+            <input type="number" id="diabetesScore" placeholder="Количество баллов">
+        </div>
+
+        <h3>Запрос дополнительных опросников</h3>
+        <label class="checkbox-group">
+            <input type="checkbox" id="reqMagnesium">
+            <span>Нужен «Опросник на дефицит магния»</span>
+        </label>
+        <label class="checkbox-group">
+            <input type="checkbox" id="reqIron">
+            <span>Нужен «SMART – диагностика дефицита железа»</span>
+        </label>
+
+        <button type="button" class="btn" onclick="copyResults()">Скопировать результаты в буфер</button>
+        <button type="button" class="btn btn-email" onclick="sendEmail()">Отправить куратору по Email</button>
+        
+        <div id="statusMessage" class="status-msg"></div>
+    </form>
+</div>
+
+<script>
+    function generateTextData() {
+        const ln = document.getElementById('lastName').value || '—';
+        const fn = document.getElementById('firstName').value || '—';
+        const bd = document.getElementById('birthDate').value || '—';
+        const ph = document.getElementById('phone').value || '—';
+        const em = document.getElementById('email').value || '—';
+        const w = document.getElementById('weight').value || '—';
+        const h = document.getElementById('height').value || '—';
+        const es = document.getElementById('energyScore').value || '—';
+        const ts = document.getElementById('thyroidScore').value || '—';
+        const ds = document.getElementById('diabetesScore').value || '—';
+        
+        const reqMag = document.getElementById('reqMagnesium').checked ? 'Да' : 'Нет';
+        const reqIron = document.getElementById('reqIron').checked ? 'Да' : 'Нет';
+
+        return `АНКЕТА SIBERIAN WELLNESS
+---------------------------------
+Личные данные:
+•  Фамилия: ${ln}
+•  Имя: ${fn}
+•  Дата Рождения: ${bd}
+•  Контактный телефон: ${ph}
+•  Электронная почта: ${em}
+
+Результаты SMART-Диагностики:
+•  Вес: ${w} кг
+•  Рост: ${h} см
+
+Результаты опросников:
+•  Опросник «Насколько Вы энергичны»: ${es} баллов
+•  Опросник «Состояние вашей щитовидной железы»: ${ts} баллов
+•  Опросник «Риск развития сахарного диабета»: ${ds} баллов
+
+Запрос дополнительных опросников:
+•  Опросник на дефицит магния: ${reqMag}
+•  SMART – диагностика дефицита железа: ${reqIron}`;
+    }
+
+    function copyResults() {
+        const text = generateTextData();
+        navigator.clipboard.writeText(text).then(() => {
+            showStatus('Результаты скопированы! Теперь вы можете вставить их в Telegram или MAX.', 'status-success');
+        }).catch(err => {
+            alert('Не удалось скопировать автоматически. Пожалуйста, воспользуйтесь кнопкой Email отправки.');
+        });
+    }
+
+    function sendEmail() {
+        const text = generateTextData();
+        const curatorEmail = "konstatin.markov12@gmail.com";
+        const subject = encodeURIComponent("Анкета Siberian Wellness: " + document.getElementById('lastName').value + " " + document.getElementById('firstName').value);
+        const body = encodeURIComponent(text);
+        
+        // Открытие почтового клиента с заполненным адресом, темой и телом письма
+        window.location.href = `mailto:${curatorEmail}?subject=${subject}&body=${body}`;
+    }
+
+    function showStatus(msg, className) {
+        const status = document.getElementById('statusMessage');
+        status.innerText = msg;
+        status.className = 'status-msg ' + className;
+        setTimeout(() => { status.className = 'status-msg'; }, 5000);
+    }
+</script>
+
+</body>
+</html>
